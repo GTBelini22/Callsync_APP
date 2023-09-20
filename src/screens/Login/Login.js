@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, Alert } from 'react-native';
-import styles from './styles';
-import app from '../../config/Firebase'; // Importe a instância correta
+import styles from './styles'; 
 import { auth } from '../../config/Firebase';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { useNavigation } from '@react-navigation/native';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading,setLoading] = useState(false);
-  //const auth = getAuth(app);
   const [errorAlert, setErrorAlert] = useState({ visible: false, message: '' });
   const navigation = useNavigation();
 
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+          navigation.navigate('Dashboard'); // Redireciona para a tela de dashboard se o usuário estiver autenticado.
+        }
+      });
+  
+      return unsubscribe;
+    }, []);
 
   const handleLogin = async () => {
     setLoading(true);
