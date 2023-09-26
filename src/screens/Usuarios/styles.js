@@ -42,6 +42,10 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  loadingContainer: {
+flex: 1,
+alignItems:'flex-start'
+  },
   // iconContainer: {
   //   marginLeft: 23, // Espaço entre o ícone e o texto
   // },
