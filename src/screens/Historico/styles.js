@@ -5,9 +5,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft:17,
+    marginLeft: 17,
     maxHeight: 550,
-    marginBottom:20,
+    marginBottom: 20,
   },
   inputContainer: {
     flexDirection: 'row',
@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: '#F5F5F5',
-    height:30,
+    height: 30,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#CCCCCC',
@@ -43,10 +43,10 @@ export const styles = StyleSheet.create({
     marginBottom: 10,
     borderRadius: 10,
     flexDirection: 'row',
-    borderWidth:0.5,
+    borderWidth: 0.5,
     borderColor: '#CCCCCC',
   },
-  
+
   itemFlat: {
     // Estilos específicos para centralizar o conteúdo dentro do itemContainer
   },
@@ -67,6 +67,11 @@ export const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     textAlign: 'center',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
