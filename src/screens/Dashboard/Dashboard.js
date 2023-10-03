@@ -7,7 +7,8 @@ import { useRoute } from '@react-navigation/native';
 
 
 
-const Dashboard = () => {
+const Dashboard = ({route}) => {
+  const user = route.params;
 
   const navigation = useNavigation();
 
@@ -24,13 +25,18 @@ const Dashboard = () => {
     navigation.navigate('Usuarios');
   };
 
+  useEffect(() => {
+   console.log(user.user)
+  }, []);
+
 
   return (
     <View >
 
       <View style={styles.rectangle}>
         <Icon name="contact-page" size={70} color="black" style={{ marginLeft: 10 }} />
-        <Text style={styles.text}></Text>
+        <Text style={styles.text}>{user.user}</Text>
+
       </View>
 
       <View style={styles.containerButton}>

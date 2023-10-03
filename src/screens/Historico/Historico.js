@@ -3,8 +3,10 @@ import { View, TextInput, Button, FlatList, Text, TouchableOpacity, ScrollView,A
 import { firestore } from '../../config/Firebase' // Verifique a importação
 import { styles } from './styles'; // Importe o estilo
 import { collection, getDocs, query, where } from 'firebase/firestore'
+import { useNavigation } from '@react-navigation/native';
 
 const Historico = () => {
+  const navigation = useNavigation();
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,8 +22,11 @@ const Historico = () => {
     } catch (error) {
       console.error('Erro ao buscar dados do Firebase:', error);
     }finally {
-      setLoading(false); // Define o estado de loading como false quando a busca é concluída (mesmo se houver erro)
+      setLoading(false); 
     }
+  };
+  const handleChamado = () => {
+    navigation.navigate('Chamados');
   };
 
   useEffect(() => {
@@ -83,7 +88,7 @@ const Historico = () => {
         )}
       </View>
       <View style={styles.containerButton}>
-        <TouchableOpacity style={styles.roundedButton}>
+        <TouchableOpacity style={styles.roundedButton} onPress={handleChamado}>
           <Text style={styles.buttonText}>Novo Chamado</Text>
         </TouchableOpacity>
       </View>

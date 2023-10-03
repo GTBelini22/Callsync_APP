@@ -16,7 +16,7 @@ const Login = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigation.navigate('Dashboard');
+        navigation.navigate('Dashboard', {screen:'DashboardMain', params:{user: user.email}});
 
  // Redireciona para a tela de dashboard se o usuário estiver autenticado.
       }
@@ -34,7 +34,8 @@ const Login = () => {
         return;
       }
       const response = await signInWithEmailAndPassword(auth, email, password);
-      navigation.navigate('Dashboard'); // Substitua 'NomeDaTela' pelo nome correto da sua próxima tela
+      console.log('redirecionando')
+      navigation.navigate('Dashboard', {screen:'DashboardMain', params:{teste: 'teste'}}); // Substitua 'NomeDaTela' pelo nome correto da sua próxima tela
     } catch (error) {
       console.log(error);
       setErrorAlert({ visible: true, message: 'Usuário ou Senha incorreto.' });
