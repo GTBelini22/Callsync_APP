@@ -3,18 +3,41 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-nativ
 import { styles } from './styles';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Picker } from '@react-native-picker/picker';
+import { firestore } from '../../config/Firebase' // Verifique a importação
+import { addDoc, collection } from 'firebase/firestore';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Chamados = () => {
   const [nome, setNome] = useState('');
   const [selecao, setSelecao] = useState('');
   const [observacao, setObservacao] = useState('');
+  const navigation = useNavigation();
 
-  const handleEnviar = () => {
+  const handleEnviarr = () => {
     console.log('Nome:', nome);
     console.log('Seleção:', selecao);
     console.log('Observação:', observacao);
   };
+
+
+  const handleEnviar = async () => {
+    try {
+        // Criar um novo documento na coleção "historico"
+        const docRef = await addDoc(collection(firestore, 'historico'), {
+            usuario: nome,
+            motivo: selecao,
+            observacao: observacao,
+            status: 'Aberto'
+        });
+
+        console.log("Documento escrito com ID: ", docRef.id);
+        navigation.goBack();
+    } catch (e) {
+        console.error("Erro adicionando documento: ", e)
+    }
+};
+
 
   return (
     <View style={styles.container}>

@@ -54,10 +54,12 @@ const Dashboard = ({route}) => {
       </View>
       <View style={styles.containerButton}>
 
-        <TouchableOpacity style={styles.button} onPress={handleUsuarios}>
-          <Icon name="group" size={70} color="black" style={{ marginLeft: 30 }} />
-          <Text style={styles.buttonText}>Usuários</Text>
-        </TouchableOpacity>
+      {user.user === 'useradm@gmail.com' && (
+          <TouchableOpacity style={styles.button} onPress={handleUsuarios}>
+            <Icon name="group" size={70} color="black" style={{ marginLeft: 30 }} />
+            <Text style={styles.buttonText}>Usuários</Text>
+          </TouchableOpacity>
+        )}
 
         </View>
     </View>

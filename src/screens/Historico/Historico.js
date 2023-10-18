@@ -4,6 +4,7 @@ import { firestore } from '../../config/Firebase' // Verifique a importação
 import { styles } from './styles'; // Importe o estilo
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { useNavigation } from '@react-navigation/native';
+import { useIsFocused } from '@react-navigation/native';
 
 const Historico = () => {
   const navigation = useNavigation();
@@ -25,6 +26,16 @@ const Historico = () => {
       setLoading(false); 
     }
   };
+
+  const isFocused = useIsFocused();
+  // Resto do seu código...
+
+  useEffect(() => {
+    if (isFocused) {
+      fetchDataFromFirebase();
+    }
+  }, [isFocused]);
+  
   const handleChamado = () => {
     navigation.navigate('Chamados');
   };
@@ -80,6 +91,11 @@ const Historico = () => {
                   <View style={styles.itemFlat}>
                     <Text>{item.usuario}</Text>
                     <Text>{item.motivo}</Text>
+                    <Text>{item.observacao}</Text>
+                  </View>
+                  <View style={[styles.itemStatus, { backgroundColor: item.status === 'Aberto' ? '#FFD700' : 'white' }]}>
+
+                  <Text>{item.status}</Text>
                   </View>
                 </TouchableOpacity>
               )}
